@@ -19,11 +19,17 @@ public class PhoneBook {
         editContact(num1);
         return;
         }
+
+    /**
+     * method editContact
+     * @param num1(class object)
+     * Takes the name of contact as input and edits the contact info if it exists.
+     */
     public static void editContact(Contact num1){
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the contact name you want to edit");
         String key= sc.next();
-        boolean isKey = num1.phonebook.containsKey(key);
+        boolean isKey = num1.phonebook.containsKey(key); //Checks if the key exists or not
         if(isKey){
             System.out.println("Enter the address");
             String address = sc.next();
@@ -41,6 +47,10 @@ public class PhoneBook {
             num1.phonebook.replace(key,newInfo);
             System.out.println(num1.phonebook);
         }
+        else {
+            System.out.println("Enter a valid key");
+        }
+        return;
     }
 
 
