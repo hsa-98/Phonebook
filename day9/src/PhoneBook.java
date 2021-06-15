@@ -16,8 +16,32 @@ public class PhoneBook {
         HashMap<String, List<String>> phonebook = new HashMap<String, List<String>>();
         Contact num1 = new Contact();
         num1.Contact(num);
+        editContact(num1);
+        return;
         }
-
+    public static void editContact(Contact num1){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the contact name you want to edit");
+        String key= sc.next();
+        boolean isKey = num1.phonebook.containsKey(key);
+        if(isKey){
+            System.out.println("Enter the address");
+            String address = sc.next();
+            System.out.println("Enter the pin-code");
+            String pinCode = sc.next();
+            System.out.println("Enter the contact num");
+            String number = sc.next();
+            System.out.println("Enter the email id");
+            String id = sc.next();
+            List <String> newInfo= new ArrayList<>();
+            newInfo.add(address);
+            newInfo.add(pinCode);
+            newInfo.add(number);
+            newInfo.add(id);
+            num1.phonebook.replace(key,newInfo);
+            System.out.println(num1.phonebook);
+        }
+    }
 
 
 
@@ -27,5 +51,6 @@ public class PhoneBook {
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt();
         addContact(num);
+
     }
 }
