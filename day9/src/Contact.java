@@ -14,24 +14,26 @@ public class Contact {
     /**
      * Contact is a constructor. When called takes input from user.
      */
-    public void  Contact(){
+    public void  Contact(int num){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the name");
-        String name =sc.next();
-        System.out.println("Enter the address");
-        String address = sc.next();
-        System.out.println("Enter the pin-code");
-        String pinCode=  sc.next();
-        System.out.println("Enter the contact num");
-        String num = sc.next();
-        System.out.println("Enter the email id");
-        String id = sc.next();
-        List<String> contact= new ArrayList<String>();
-        contact.add(address);
-        contact.add(pinCode);
-        contact.add(num);
-        contact.add(id);
-        this.phonebook.put(name,contact);
+        for(int i=0;i<num;i++) {
+            System.out.println("Enter the name");
+            String name = sc.next();
+            System.out.println("Enter the address");
+            String address = sc.next();
+            System.out.println("Enter the pin-code");
+            String pinCode = sc.next();
+            System.out.println("Enter the contact num");
+            String number = sc.next();
+            System.out.println("Enter the email id");
+            String id = sc.next();
+            List<String> contact = new ArrayList<String>();
+            contact.add(address);
+            contact.add(pinCode);
+            contact.add(number);
+            contact.add(id);
+            this.phonebook.put(name, contact);
+        }
         System.out.println(phonebook);
     }
 }

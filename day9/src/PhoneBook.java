@@ -9,19 +9,23 @@ import java.util.Scanner;
  */
 public class PhoneBook {
     /**
-     * addContact: Calls the contact class 
+     * addContact: Calls the contact class
      */
-    public static void addContact(){
+    public static void addContact(int num){
         Scanner sc = new Scanner(System.in);
         HashMap<String, List<String>> phonebook = new HashMap<String, List<String>>();
         Contact num1 = new Contact();
-        num1.Contact();
+        num1.Contact(num);
         }
 
 
 
 
     public static void main(String args[]){
-        addContact();
+        System.out.println("Welcome to address book program");
+        System.out.println("ENter the number of contacts you want to enter");
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        addContact(num);
     }
 }
