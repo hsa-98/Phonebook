@@ -9,32 +9,62 @@ import java.util.Scanner;
  */
 
 public class Contact {
-    HashMap<String ,List<String>> phonebook = new HashMap<String, List<String>>();
+    private String address;
+    private String city;
+    private String State;
+    private int pinCode;
+    private int phoneNum;
+    private String email;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return State;
+    }
+
+    public void setState(String state) {
+        State = state;
+    }
+
+    public int getPinCode() {
+        return pinCode;
+    }
+
+    public void setPinCode(int pinCode) {
+        this.pinCode = pinCode;
+    }
+
+    public int getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(int phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     /**
      * Contact is a constructor. When called takes input from user.
      */
-    public void  Contact(int num){
-        Scanner sc = new Scanner(System.in);
-        for(int i=0;i<num;i++) {
-            System.out.println("Enter the name");
-            String name = sc.next();
-            System.out.println("Enter the address");
-            String address = sc.next();
-            System.out.println("Enter the pin-code");
-            String pinCode = sc.next();
-            System.out.println("Enter the contact num");
-            String number = sc.next();
-            System.out.println("Enter the email id");
-            String id = sc.next();
-            List<String> contact = new ArrayList<String>();
-            contact.add(address);
-            contact.add(pinCode);
-            contact.add(number);
-            contact.add(id);
-            this.phonebook.put(name, contact);
-        }
-        System.out.println(phonebook);
-        return;
-    }
 }
