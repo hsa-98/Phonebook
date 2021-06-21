@@ -8,8 +8,9 @@ import java.util.*;
  */
 public class PhoneBook {
 
-    static HashMap<String, Contact> phonebook = new HashMap<String, Contact>(); //Will store all contacts
-    static Scanner  sc = new Scanner(System.in);
+
+    HashMap<String, Contact> phonebook = new HashMap<String, Contact>(); //Will store all contacts
+    Scanner  sc = new Scanner(System.in);
 
     /**
      * addInfo
@@ -19,7 +20,7 @@ public class PhoneBook {
      * This function acceses the setter functions in the Contact.Java class
      * It helps to edit/add the contact information
      */
-    public static Contact addInfo(Contact contact){
+    public  Contact addInfo(Contact contact){
 
         System.out.println("Enter the address");
         String address = sc.next();
@@ -56,7 +57,7 @@ public class PhoneBook {
      * This method. Adds the contact information given by the user into address book
      * To add the info it calls the @addInfo method
      */
-    public static void addContact(int num) {
+    public  void addContact(int num) {
         Scanner sc = new Scanner(System.in);
         for (int i = 0; i < num; i++) {
             Contact contact = new Contact();
@@ -75,7 +76,7 @@ public class PhoneBook {
      * This function edits the contact user wants to edit
      * It calls the addInfo method to add te edited info
      */
-    public static void editContact() {
+    public  void editContact() {
 
         System.out.println("Enter the contact name you want to edit");
         String key = sc.next();
@@ -95,7 +96,7 @@ public class PhoneBook {
     /**
      * This function deletes the contact user wants to delete
      */
-    public static void deleteContact() {
+    public  void deleteContact() {
         System.out.println("Enter the contact name you want to delete");
         String key = sc.next();
         boolean isKey = phonebook.containsKey(key); //Checks if the key exists or not
@@ -107,8 +108,8 @@ public class PhoneBook {
         }
         return;
     }
-    public static void main(String args[]) {
-        System.out.println("Welcome to address book program");
+    public  void main() {
+
 
         Scanner sc = new Scanner(System.in);
         int choice = 0;
@@ -132,7 +133,11 @@ public class PhoneBook {
                     deleteContact();
                     break;
                 case 4:
-                    for (Map.Entry<String,Contact> book : phonebook.entrySet()){
+                    System.out.println(phonebook);
+                    Iterator<Map.Entry<String,Contact>> itr = phonebook.entrySet().iterator();
+
+                    while (itr.hasNext()){
+                        Map.Entry<String ,Contact>book = itr.next();
                         System.out.println(book.getKey()+":");
                         System.out.print("Address:" +book.getValue().getAddress()+" ");
                         System.out.print("City:" +book.getValue().getCity()+" ");
@@ -140,16 +145,16 @@ public class PhoneBook {
                         System.out.println("Pincode:" +book.getValue().getPinCode()+" ");
                         System.out.print("Number:" +book.getValue().getPhoneNum()+" ");
                         System.out.print("Email-id" +book.getValue().getEmail());
-                        break;
-
-
+                        System.out.println();
                     }
+                    break;
                 case 5:
                     System.out.println("Exit:");
                     break;
 
                 }
             }
+        return;
         }
     }
 
