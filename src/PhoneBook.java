@@ -1,6 +1,8 @@
 
 
 import java.util.*;
+import java.util.stream.Collectors;
+
 /**
  * PhoneBook
  *
@@ -8,8 +10,11 @@ import java.util.*;
  */
 public class PhoneBook {
 
-
-    Map<String ,Contact>phonebook = new HashMap<>(); //Will store all contacts
+    /**
+     * Stores String as key:Which will be the name of contact
+     * Object of Contact is the value in the map
+     */
+    Map<String, Contact> phonebook = new HashMap<>(); //Will store all contacts
     Scanner sc = new Scanner(System.in);
 
     /**
@@ -21,7 +26,7 @@ public class PhoneBook {
      * This function accesses the setter functions in the Contact.Java class
      * It helps to edit/add the contact information
      */
-    public Contact addInfo(Contact contact) {
+    public Contact addInfo(String name, Contact contact) {
 
         System.out.println("Enter the address");
         String address = sc.next();
@@ -41,6 +46,8 @@ public class PhoneBook {
         System.out.println("Enter the email id");
         String id = sc.next();
         System.out.println();
+
+        contact.setName(name);
         contact.setAddress(address);
         contact.setCity(city);
         contact.setState(state);
@@ -63,7 +70,7 @@ public class PhoneBook {
             System.out.println("Enter the name");
             String name = sc.next();
             System.out.println();
-            contact = addInfo(contact);
+            contact = addInfo(name, contact);
 
             phonebook.put(name, contact);
         }
@@ -83,7 +90,7 @@ public class PhoneBook {
         if (isKey) {
             Contact obj;
             obj = phonebook.get(key);
-            addInfo(obj);
+            addInfo(key, obj);
 
         } else {
             System.out.println("Enter a valid key");
@@ -111,20 +118,39 @@ public class PhoneBook {
         System.out.println("Enter the name of person you want to search");
         Scanner sc = new Scanner(System.in);
         String name = sc.next();
-        Optional <Contact> obj  = phonebook.entrySet()
-                             .stream()
-                            .filter(x->phonebook.containsKey(name))
-                            .map(Map.Entry::getValue)
-                            .findFirst();
-         Contact contact = obj.get();
+        Optional<Contact> obj = phonebook.entrySet()
+                .stream()
+                .filter(x -> phonebook.containsKey(name))
+                .map(Map.Entry::getValue)
+                .findFirst();
+        Contact contact = obj.get();
         System.out.println(name);
         System.out.print("Address:" + contact.getAddress() + " ");
-        System.out.print("City:" +contact.getCity() + " ");
+        System.out.print("City:" + contact.getCity() + " ");
         System.out.print("State:" + contact.getState() + " ");
         System.out.println("PinCode:" + contact.getPinCode() + " ");
         System.out.print("Number:" + contact.getPhoneNum() + " ");
         System.out.print("Email-id" + contact.getEmail());
     }
+
+
+    public List searchCity(List list, String city) {
+        list = phonebook.entrySet()
+                .stream()
+                .filter(x -> x.getValue().getCity().equals(city))
+                .map(Map.Entry::getValue)
+                .collect(Collectors.toList());
+        return list;
+    }
+
+    public int countCityContacts(String city) {
+        int count = (int) phonebook.entrySet()
+                .stream()
+                .filter(x -> x.getValue().getCity().equals(city))
+                .count();
+        return count;
+    }
+
 
     public void main() {
         Scanner sc = new Scanner(System.in);
