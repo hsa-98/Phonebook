@@ -27,7 +27,7 @@ public class AddressBook {
                     addressBook.searchViaCity();
                     break;
                 case 4:
-                   // addressBook.countCity();
+                   addressBook.countCity();
                 case 5:
                     System.out.println("Exit");
                     break;
@@ -86,6 +86,18 @@ public class AddressBook {
             System.out.println();
         }
 
+    }
+    public void countCity(){
+        System.out.println("Enter the name of city");
+        String city = sc.next();
+        Iterator<Map.Entry<String ,PhoneBook>> book = hashMap.entrySet().iterator();
+        int count = 0;
+        while (book.hasNext()){
+            Map.Entry<String,PhoneBook>bookName = book.next();
+            PhoneBook phoneBook  = bookName.getValue();
+            count+=phoneBook.countCityContacts(city);
+        }
+        System.out.println("The number of contacts in "+city+" are "+count);
     }
 
 }
