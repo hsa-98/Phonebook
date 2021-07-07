@@ -15,6 +15,7 @@ public class PhoneBook {
      * Object of Contact is the value in the map
      */
     Map<String, Contact> phonebook = new HashMap<>(); //Will store all contacts
+    HashMap<String,List<Contact>>cityContact = new HashMap<>();
     Scanner sc = new Scanner(System.in);
 
     /**
@@ -134,13 +135,12 @@ public class PhoneBook {
     }
 
 
-    public List searchCity(List list, String city) {
-        list = phonebook.entrySet()
+    public Map searchCity(Map<Object,Object>cityList, String city) {
+         cityList = phonebook.entrySet()
                 .stream()
                 .filter(x -> x.getValue().getCity().equals(city))
-                .map(Map.Entry::getValue)
-                .collect(Collectors.toList());
-        return list;
+                .collect(Collectors.toMap(e->e.getKey(),e->e.getValue()));
+        return cityList;
     }
 
     public int countCityContacts(String city) {
@@ -149,6 +149,17 @@ public class PhoneBook {
                 .filter(x -> x.getValue().getCity().equals(city))
                 .count();
         return count;
+    }
+
+    public HashMap<String, List<Contact>> viewByCity(String city){
+        List<Contact>list = phonebook.entrySet()
+                            .stream()
+                            .filter(x->x.getValue().getCity().equals(city))
+                            .map(Map.Entry::getValue)
+                            .collect(Collectors.toList());
+        cityContact.put(city,list);
+        return cityContact;
+
     }
 
 
