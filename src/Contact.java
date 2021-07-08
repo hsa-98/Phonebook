@@ -9,7 +9,7 @@ import java.util.Scanner;
  */
 
 public class Contact {
-    private String name;
+    private     String name;
 
     public String getName() {
         return name;

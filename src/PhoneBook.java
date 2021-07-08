@@ -215,7 +215,18 @@ public class PhoneBook {
         return;
     }
 
+    public void sortAlphabetically(){
+        Map<String,Contact> sorted = phonebook.entrySet().stream().sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(e->e.getKey(),e->e.getValue(),(e1,e2)->e2,LinkedHashMap::new));
+        phonebook = sorted;
+    }
 
+    @Override
+    public String toString() {
+        return "PhoneBook{" +
+                "phonebook=" + phonebook+
+                '}';
+    }
 }
 
 

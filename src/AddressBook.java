@@ -9,12 +9,13 @@ public class AddressBook {
         System.out.println("Welcome to address book program");
         AddressBook addressBook = new AddressBook();
         int choice = 0;
-        while (choice != 6) {
+        while (choice != 7) {
             System.out.println("1)To create a new address book");
             System.out.println("2)To access an existing address book");
             System.out.println("3)Search a person using city/state across multiple address book");
             System.out.println("4)Count the number  of contacts in a city");
             System.out.println("5)Store contacts in a city together");
+            System.out.println("6)Sort Contacts alphabetically");
             System.out.println("6)Exit");
 
             choice = sc.nextInt();
@@ -35,6 +36,8 @@ public class AddressBook {
                     addressBook.cityDictionary();
                     break;
                 case 6:
+                    addressBook.sort();
+                case 7:
                     System.out.println("Exit");
                     break;
                 default:
@@ -133,4 +136,10 @@ public class AddressBook {
         }
     }
 
+    public void sort(){
+        Iterator<Map.Entry<String, PhoneBook>> book = hashMap.entrySet().iterator();
+        while (book.hasNext()){
+            book.next().getValue().sortAlphabetically();
+        }
+    }
 }
