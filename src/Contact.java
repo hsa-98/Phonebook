@@ -79,4 +79,16 @@ public class Contact {
     /**
      * Contact is a constructor. When called takes input from user.
      */
+    @Override
+    public String toString() {
+        return "\n" +
+                "name='" + name + '\n' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", State='" + State + '\'' +
+                ", pinCode=" + pinCode +
+                ", phoneNum='" + phoneNum + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

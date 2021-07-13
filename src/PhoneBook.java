@@ -1,5 +1,6 @@
 
 
+import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,23 @@ public class PhoneBook {
     Map<String, Contact> phonebook = new HashMap<>(); //Will store all contacts
     HashMap<String,List<Contact>>cityContact = new HashMap<>();
     Scanner sc = new Scanner(System.in);
+    File diary ;//file object is created which stores contacts
+
+    /**
+     * This constructor creates a file if it doesnt already exists
+     * @param name
+     * @throws IOException
+     */
+    public PhoneBook(String name) throws IOException {
+        diary = new File(name+".txt");
+
+        if(diary.createNewFile()){
+            System.out.println("AddressBook is created");
+        }
+        else {
+            System.out.println("AddressBook  exists");
+        }
+    }
 
     /**
      * addInfo
@@ -27,6 +45,8 @@ public class PhoneBook {
      * This function accesses the setter functions in the Contact.Java class
      * It helps to edit/add the contact information
      */
+
+
     public Contact addInfo(String name, Contact contact) {
 
         System.out.println("Enter the address");
@@ -55,6 +75,7 @@ public class PhoneBook {
         contact.setPinCode(pinCode);
         contact.setPhoneNum(number);
         contact.setEmail(id);
+
         return contact;
 
 
@@ -64,7 +85,7 @@ public class PhoneBook {
      * @param num This method. Adds the contact information given by the user into address book
      *            To add the info it calls the @addInfo method
      */
-    public void addContact(int num) {
+    public void addContact(int num) throws IOException {
         Scanner sc = new Scanner(System.in);
         for (int i = 0; i < num; i++) {
             Contact contact = new Contact();
@@ -163,7 +184,7 @@ public class PhoneBook {
     }
 
 
-    public void main() {
+    public void main() throws IOException {
         Scanner sc = new Scanner(System.in);
         int choice = 0;
         while (choice != 6) {
@@ -179,6 +200,15 @@ public class PhoneBook {
                     System.out.println("Enter the number of contacts you want too enter");
                     int num = sc.nextInt();
                     addContact(num);
+
+                    /*
+                    The hashmap is written into a file using bufferedWriter
+                     */
+                    BufferedWriter bf = new BufferedWriter(new FileWriter(diary,true));
+                    for (Map.Entry<String,Contact> entry : phonebook.entrySet()){
+                        bf.write(entry.getValue().toString());
+                    }
+                    bf.close();
                     break;
                 case 2:
                     editContact();
@@ -191,19 +221,11 @@ public class PhoneBook {
                     searchName();
                     break;
                 case 5:
-                    System.out.println(phonebook);
-                    Iterator<Map.Entry<String, Contact>> itr = phonebook.entrySet().iterator();
-
-                    while (itr.hasNext()) {
-                        Map.Entry<String, Contact> book = itr.next();
-                        System.out.println(book.getKey() + ":");
-                        System.out.print("Address:" + book.getValue().getAddress() + " ");
-                        System.out.print("City:" + book.getValue().getCity() + " ");
-                        System.out.print("State:" + book.getValue().getState() + " ");
-                        System.out.println("PinCode:" + book.getValue().getPinCode() + " ");
-                        System.out.print("Number:" + book.getValue().getPhoneNum() + " ");
-                        System.out.print("Email-id" + book.getValue().getEmail());
-                        System.out.println();
+                    File obj = new File(String.valueOf(diary));
+                    Scanner reader = new Scanner(obj);
+                    while (reader.hasNextLine()) {
+                        String data = reader.nextLine();
+                        System.out.println(data);
                     }
                     break;
                 case 6:

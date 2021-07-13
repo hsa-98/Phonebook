@@ -1,0 +1,7 @@
+
+name='Kiran
+, address='bnjk', city='hbkjnkj', State='jkn', pinCode=6451, phoneNum='mldscz', email='edcvcd'}
+name='Oppa
+, address='hekns', city='jndc', State='jdncm,ds', pinCode=64531, phoneNum='rwfsd', email='wfsd'}
+name='SAm
+, address='dcn', city='ejncda,m', State='jdcnm', pinCode=78451, phoneNum='jdcjndc', email='jdkmlvjnvmd'}

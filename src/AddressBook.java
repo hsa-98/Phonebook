@@ -1,3 +1,5 @@
+import javax.imageio.IIOException;
+import java.io.IOException;
 import java.util.*;
 
 public class AddressBook {
@@ -5,7 +7,7 @@ public class AddressBook {
     HashMap<String, PhoneBook> hashMap = new HashMap<>();
     static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("Welcome to address book program");
         AddressBook addressBook = new AddressBook();
         int choice = 0;
@@ -16,7 +18,7 @@ public class AddressBook {
             System.out.println("4)Count the number  of contacts in a city");
             System.out.println("5)Store contacts in a city together");
             System.out.println("6)Sort Contacts alphabetically");
-            System.out.println("6)Exit");
+            System.out.println("7)Exit");
 
             choice = sc.nextInt();
             switch (choice) {
@@ -37,6 +39,7 @@ public class AddressBook {
                     break;
                 case 6:
                     addressBook.sort();
+
                 case 7:
                     System.out.println("Exit");
                     break;
@@ -48,22 +51,23 @@ public class AddressBook {
 
     }
 
+
     /**
      * \
      * This function creates  a new address book
      */
-    public void newBook() {
-        PhoneBook phoneBook = new PhoneBook();
+    public void newBook() throws IOException {
         System.out.println("Enter the name of the new address book");
         String name = sc.next();
+        PhoneBook phoneBook = new PhoneBook(name);
         hashMap.put(name, phoneBook);
         return;
     }
 
     /**
-     * Accesses a particluar address book
+     * Accesses a particular address book
      */
-    public void accessBook() {
+    public void accessBook() throws IOException {
         System.out.println("Enter the name of the book you want to access");
         String name = sc.next();
         PhoneBook phoneBook = hashMap.get(name);
